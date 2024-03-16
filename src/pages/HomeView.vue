@@ -1,10 +1,11 @@
 <template>
   <div class="wrapper cover-main">
       <Container>
-        <div class="w-full flex flex-col items-end bg-slate-200 ">
-          <h1 class="main-tite font-roboto font-medium">
+        <div class="w-full flex flex-col items-end pt-[270px] gap-[140px]">
+          <h1 class="main-tite font-roboto font-medium text-2xlg text-white leading-[112.5px]">
             IAMDB
           </h1>
+          <Form/>
         </div>
       </Container>
   </div>
@@ -14,6 +15,7 @@
 <script setup>
   import Container from '@/components/base/Container.vue';
   import Button from '@/components/base/Button.vue';
+  import Form from '@/components/main/Form.vue'
 </script>
 
 

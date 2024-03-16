@@ -31,7 +31,7 @@
     }
 
     .button--default {
-        @apply  rounded-curve-100
+        @apply  rounded-curve-100 px-[32px] py-[18px] gap-[12px]
     }
 
 </style>
