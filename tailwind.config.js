@@ -28,6 +28,19 @@ export default {
       fontFamily:{
         'roboto':['Roboto', 'sans-serif']
       },
+      fontSize:{
+        'smm':'12px',
+        sm:'14px',
+        'xsm':'16px',
+        '2xsm':'18px',
+        md:'21px',
+        'xmd':'24px',
+        '2xmd':'28px',
+        lg:'32px',
+        'xlg':'48px',
+        '2xlg':'96px',
+        '3xlg':'128px'
+      },
       fontWeight:{
         bold:700,
         medium:500,
@@ -39,7 +52,8 @@ export default {
         'red':'rgba(206, 18, 18, 1)',
         'white-iamdb-0.4':'rgba(238, 235, 221, 0.4)',
         'white-iamdb-0.6':'rgba(238, 235, 221, 0.6)',
-        'white-iamdb-1':'rgba(238, 235, 221, 1)'
+        'white-iamdb-1':'rgba(238, 235, 221, 1)',
+        'main':'rgba(27, 23, 23, 1)'
       },
 
       //           border-radius  ----------------
