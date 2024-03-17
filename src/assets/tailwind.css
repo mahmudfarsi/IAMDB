@@ -4,6 +4,6 @@
 
 @layer base {
     .container {
-        @apply w-full smm:min-w-full sm:min-w-0 md:min-w-0 md:max-w-1200 
+        @apply w-full smm:min-w-full sm:min-w-0 md:min-w-0 md:max-w-1200 smm:px-[15px] md:px-0
     }
 }

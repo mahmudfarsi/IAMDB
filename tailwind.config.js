@@ -36,7 +36,8 @@ export default {
         md:'21px',
         'xmd':'24px',
         '2xmd':'28px',
-        lg:'32px',
+        '3xmd':'32px',
+        lg:'40px',
         'xlg':'48px',
         '2xlg':'96px',
         '3xlg':'128px'

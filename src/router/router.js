@@ -9,6 +9,11 @@ export default  createRouter({
       component: import('@/pages/HomeView.vue')
     },
     {
+      name:'404',
+      path:'/:patchMatch(.*)*',
+      component:import('@/pages/404.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
