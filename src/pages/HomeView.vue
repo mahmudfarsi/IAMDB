@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper cover-main--desktop">
       <Container>
-        <div class="w-full flex flex-col items-center md:items-end pt-[230px] md:pt-[270px] gap-[150px] md:gap-[140px]">
+        <div class="w-full flex flex-col items-center md:items-end pt-[230px] md:pt-[270px] gap-[170px] md:gap-[180px]">
           <h1 class="main-tite font-roboto font-medium text-xlg md:text-2xlg text-white smm:leading-[56px] md:leading-[112.5px]">
             IAMDB
           </h1>

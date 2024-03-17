@@ -22,7 +22,7 @@
     }
 
     .input{
-        @apply  rounded-curve-100 flex-1 bg-transparent outline-none border-[1px] px-[32px] py-[12px] md:py-[18px] border-white-iamdb-1  text-xsm md:text-md text-white 
+        @apply  rounded-curve-100 flex-1 bg-transparent outline-none border-[1px] px-[32px] py-[12px] md:py-[32px] border-white-iamdb-1  text-xsm md:text-md text-white 
     }
 
     .input::placeholder{
@@ -30,6 +30,6 @@
     }
 
     .submit {
-        @apply bg-red text-white font-roboto font-normal smm:text-xsm md:text-md 
+        @apply bg-red text-white font-roboto font-normal smm:text-xsm md:text-md inline-flex
     }
 </style>
