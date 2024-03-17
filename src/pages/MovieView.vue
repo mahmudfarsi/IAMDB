@@ -27,6 +27,21 @@
                 <div class="box-middle pt-[55px]">
                     <SpecsMovie/>
                 </div>
+                <div class="box-right md:pt-[55px]">
+                    <h2 class="font-roboto font-bold text-xmd md:text-2xmd leading-[50px] text-white-iamdb-1">
+                        Cast & Crew
+                    </h2>
+                    <div class="flex flex-col gap-[10px] mt-[15px]">
+                        <CardCast/>
+                        <CardCast/>
+                        <CardCast/>
+                        <CardCast/>
+                        <CardCast/>
+                    </div>
+                    <Button tag="button" :is-icon-only="false" icon="right-flesh" class="text-red mt-[20px] ml-[100px] md:ml-[-20px]">
+                        show all
+                    </Button>
+                </div>
             </Row>
         </Section>
     </Container>
@@ -40,4 +55,6 @@
     import Container from "@/components/base/Container.vue";
     import Row from '@/components/base/Row.vue';
     import SpecsMovie from '@/components/main/SpecsMovie.vue'
+    import CardCast from '@/components/main/CardCast.vue'
+    import Button from '@/components/base/Button.vue'
 </script>
