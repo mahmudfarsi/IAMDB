@@ -9,9 +9,9 @@ export default  createRouter({
       component: import('@/pages/HomeView.vue')
     },
     {
-      name:'detail',
-      path:'/detail',
-      component:import('@/pages/DetailMovies.vue')
+      name:'movie',
+      path:'/movie',
+      component:import('@/pages/MovieView.vue')
     },
     {
       name:'404',
