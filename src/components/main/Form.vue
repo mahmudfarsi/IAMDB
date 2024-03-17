@@ -1,6 +1,6 @@
 <template>
-    <form @submit.prevent="submit" class="w-full flex flex-col md:flex-row gap-[15px]">
-        <input type="text" class="input" placeholder="Type the name of your favorite movie ...">
+    <form @submit.prevent="submit" class="form">
+        <Input type="text" placeholder="Type the name of your favorite movie ..." class="input"/>
         <Button tag="button" :is-icon-only="false" icon="search" type="submit" class="submit">
             Search
         </Button>
@@ -10,11 +10,17 @@
 
 
 <script setup>
-    import Button from '@/components/base/Button.vue'
+    import Button from '@/components/base/Button.vue';
+    import Input from '@/components/base/Input.vue'
 </script>
 
 
 <style lang="postcss" scoped>
+
+    .form {
+        @apply w-full flex flex-col md:flex-row gap-[15px]
+    }
+
     .input{
         @apply  rounded-curve-100 flex-1 bg-transparent outline-none border-[1px] px-[32px] py-[12px] md:py-[18px] border-white-iamdb-1  text-xsm md:text-md text-white 
     }
