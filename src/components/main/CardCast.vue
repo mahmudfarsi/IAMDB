@@ -7,7 +7,7 @@
             <h3 class="name font-roboto font-bold text-xsm leading-[18px] text-white-iamdb-1">
                 Robert Downey Jr.
             </h3>
-            <p class="role font-roboto font-normal text-sm leading-[16px]">
+            <p class="role text-white-iamdb-1 font-roboto font-normal text-sm leading-[16px]">
                 as Tony Stark
             </p>
         </div>

@@ -46,6 +46,17 @@
         </Section>
     </Container>
 
+    <Container class=" mt-[100px]">
+        <Section class="md:pl-[45px]">
+            <h2 class="title-photo text-white-iamdb-1 font-roboto font-bold text-xmd md:text-2xmd leading-[50px]">
+                Photos
+            </h2>
+            <div class="mt-[20px]">
+                <BoxImgs/>
+            </div>
+        </Section>
+    </Container>
+
   </div>
 </template>
 
@@ -57,4 +68,5 @@
     import SpecsMovie from '@/components/main/SpecsMovie.vue'
     import CardCast from '@/components/main/CardCast.vue'
     import Button from '@/components/base/Button.vue'
+    import BoxImgs from '@/components/main/BoxImgs.vue'
 </script>
