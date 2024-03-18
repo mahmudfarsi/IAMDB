@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="w-full ">
     <Section class="w-full cover-main--desktop">
       <Container class=" mx-auto">
         <div
@@ -14,6 +14,16 @@
         </div>
       </Container>
     </Section>
+
+    <Section class="w-full mt-[40px]">
+      <Container class="mx-auto">
+        <Ul class="flex flex-col gap-[50px]">
+          <CardItem/>
+          <CardItem/>
+          <CardItem/>
+        </Ul>
+      </Container>
+    </Section>
   </div>
 </template>
 
@@ -22,6 +32,8 @@ import Container from "@/components/base/Container.vue";
 import Button from "@/components/base/Button.vue";
 import Form from "@/components/main/Form.vue";
 import Section from "@/components/base/Section.vue";
+import Ul from '@/components/base/Ul.vue';
+import CardItem from '@/components/main/CardItem.vue'
 </script>
 
 <style scoped>
