@@ -10,7 +10,7 @@ export default  createRouter({
     },
     {
       name:'movie',
-      path:'/movie',
+      path:'/movie/:id',
       component:import('@/pages/MovieView.vue')
     },
     {

@@ -34,7 +34,7 @@
     <Section class="w-full mt-[40px]">
       <Container class="mx-auto">
         <Ul class="flex flex-col gap-[50px]">
-            <router-link v-for="item in visibleData" :key="item.id" :to="{name:'movie'}">
+            <router-link v-for="item in visibleData" :key="item.id" :to="{path:`/movie/${item.id}`}">
               <CardItem  :movie="item"  />
             </router-link>
         </Ul>
@@ -72,7 +72,6 @@ const datas = ref([]);
 const send = (v) => {
 
   inputValue.value = '';
-  console.log(v);
   getData(v);
 }
 

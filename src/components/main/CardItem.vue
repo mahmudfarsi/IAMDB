@@ -1,20 +1,20 @@
 <template>
   <!-- <router-link :to="{name:'movie'}"> -->
-    <Card v-if="movie" tag="li" class="card-list">
-      <template #header>
-        <Img :src="img" :alt="movie.title" class="img-cover" />
-      </template>
-      <div class="body flex flex-col pt-[20px]">
-        <h2 class="title">{{ movie.title }}</h2>
-        <!-- <p class="director text-white-iamdb-1 font-roboto font-normal text-xsm mt-[10px]">director : joseph magiery</p> -->
-        <p class="decsription">{{ movie.overview }}</p>
-        <div class="box-detail">
-          <span class="year text-white-iamdb-1">{{ movie.release_date }}</span>
-          <!-- <div class="dot w-[7px] h-[7px] rounded-full bg-white-iamdb-1"></div> -->
-          <!-- <span class="year text-white-iamdb-1">2h 6m</span> -->
-        </div>
+  <Card v-if="movie" tag="li" class="card-list">
+    <template #header>
+      <Img :src="img" :alt="movie.title" class="img-cover" loading="lazy" />
+    </template>
+    <div class="body flex flex-col pt-[20px]">
+      <h2 class="title">{{ movie.title }}</h2>
+      <!-- <p class="director text-white-iamdb-1 font-roboto font-normal text-xsm mt-[10px]">director : joseph magiery</p> -->
+      <p class="decsription">{{ movie.overview }}</p>
+      <div class="box-detail">
+        <span class="year text-white-iamdb-1">{{ movie.release_date }}</span>
+        <!-- <div class="dot w-[7px] h-[7px] rounded-full bg-white-iamdb-1"></div> -->
+        <!-- <span class="year text-white-iamdb-1">2h 6m</span> -->
       </div>
-    </Card>
+    </div>
+  </Card>
   <!-- </router-link> -->
 </template>
 
