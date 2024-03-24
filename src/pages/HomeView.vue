@@ -93,7 +93,6 @@ const getData = async (name) => {
 
 const visibleData = computed(() => {
   if(datas.value){
-    console.log(datas.value);
     return datas.value.results
   }
   return 'no data !'

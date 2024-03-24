@@ -1,7 +1,5 @@
 <template>
-    <div class="box-img">
         <img :src="src" :alt="alt" :height="height">
-    </div>
 </template>
 
 

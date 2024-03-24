@@ -1,16 +1,15 @@
 <template>
-  <div class="flex flex-col items-center">
+  <div v-if="details" class="w-full flex flex-col items-center">
     <!--  image background  -->
-    <div class="w-full">
-      <Img src="" alt="cover" />
-    </div>
+    <Backdrop :Backdrop="detailTmdb.backdrop_path "/>
+    
 
     <!--  section-1  -->
     <Container class="md:px-[40px] mt-[-100px] md:mt-[-210px]">
       <Section>
         <Row tag="div" is-row="true" class="gap-[45px]">
           <div class="box-left smm:hidden md:flex md:flex-col">
-            <Img src="../../public/image 2.png" />
+            <Img :src="details.Poster" />
             <div
               class="indicator-box flex items-center gap-[30px] mt-[20px] px-[15px]"
             >
@@ -34,7 +33,7 @@
             </div>
           </div>
           <div class="box-middle pt-[55px]">
-            <SpecsMovie :details="datas" />
+            <SpecsMovie :details="details" />
           </div>
           <div class="box-right md:pt-[55px]">
             <h2
@@ -89,7 +88,57 @@ import SpecsMovie from "@/components/main/SpecsMovie.vue";
 import CardCast from "@/components/main/CardCast.vue";
 import Button from "@/components/base/Button.vue";
 import BoxImgs from "@/components/main/BoxImgs.vue";
- 
+import Backdrop from '@/components/main/Backdrop.vue'
+
+const route = useRoute();
+
+// const dataFunc = (data) => {
+
+//   const overview = data.overview;
+//   const poster = data.poster_path;
+
+//   return {
+//     title,
+//     overview,
+//     poster,
+//   };
+// };
+
+// //       help ---------------------------------------------
+// const getDatas = (movie_id) => {
+//   const options = {
+//     method: "GET",
+//     headers: {
+//       accept: "application/json",
+//       Authorization:
+//         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTg3ZTg0ODZlMDEyMzk0MmQ5ZjUyNzU2MWFiMjQ3OCIsInN1YiI6IjY1ZjZjMzFhZDhmNDRlMDE3YzUwMzM3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-zJNixL2MLgqbhe-0wAVXI3b77AJ1b9aRMmU1ptF5LQ",
+//     },
+//   };
+//   const url = `https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`;
+
+//   const get = new Promise(async (res) => {
+//     const response = await fetch(url,options);
+//     details.value = await response.json();
+//     res(details.value)
+//   });
+
+//   get.then((res) => getData(res))
+//      .catch((error) => { throw new Error(error.message) } )
+// };
+
+// const getData = (data) => {
+//   details.value = data
+// }
+// getDatas(route.params.id);
+
+
+const ids = ref(null);
+const details = ref(null);
+const videos = ref(null);
+const similarList = ref([]);
+const imagesList = ref([]);
+const listCrew = ref([]);
+const detailTmdb = ref(null);
 
 const options = {
   method: "GET",
@@ -99,50 +148,154 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTg3ZTg0ODZlMDEyMzk0MmQ5ZjUyNzU2MWFiMjQ3OCIsInN1YiI6IjY1ZjZjMzFhZDhmNDRlMDE3YzUwMzM3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-zJNixL2MLgqbhe-0wAVXI3b77AJ1b9aRMmU1ptF5LQ",
   },
 };
-const route = useRoute();
-const details =  ref([]);
+
+const movieId = computed(() => {
+  return route.params.id;
+});
+
+
+const fetchMovies = new Promise(async (res) => {
+  /*         id         */
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId.value}/external_ids`,
+    options
+  );
+  ids.value = await response.json();
+  const imdb_id = ids.value.imdb_id;
+  console.log(imdb_id);
+  console.log('imdb_id:',ids.value);
+
+  if (ids.value) {
+
+    /*       details      */
+    const fetchDetails = async (imdb) => {
+      const response = await fetch(
+        `http://www.omdbapi.com/?i=${imdb}&apikey=bc6f598a`
+      );
+      details.value = await response.json();
+      console.log('details:',details.value);
+    };
+    fetchDetails(imdb_id);
+
+    /*       videos       */
+    const fetchVideos = async (id) => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+        options
+      );
+      const result = await response.json();
+      console.log("videos:",result.results);
+      return videos.value = result.results;
+    };
+    fetchVideos(movieId.value);
+
+
+    /*        similar        */
+    const fetchSimilar = async (id) => {
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`, options);
+      const result = await response.json();
+      console.log('similar:',result.results);
+      return similarList.value = result.results;
+    }
+
+    fetchSimilar(movieId.value);
 
 
 
+    /*       images        */
+    const fetchImages = async (id) => {
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/images`, options);
+      const result = await response.json();
+      console.log('images:',result);
+      return imagesList.value = await result
+      
+    }
 
-//       help ---------------------------------------------
-const getDetails = new Promise(async (res) => {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${route.params.id}?append_to_response=details&language=en-US`, options);
-  details.value = await response.json()
-  return res(details.value)
-})
+    console.log(imagesList.value);
 
-let d = null;
-getDetails.
-  then((r) => d = r).
-  then((r) => console.log(r))
-  console.log(d);
-
+    fetchImages(movieId.value)
 
 
+    /*          crew          */
+    const fetchCrew = async (id) => {
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`, options);
+      const result = await response.json();
+      console.log('crew',result.crew);
+      return listCrew.value = result.cast;
 
+    }
+
+
+    /*          details-tmdb           */
+    const fetchDetailTmdb = async (id) => {
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?append_to_response=details&language=en-US`, options);
+      const result = await response.json();
+      detailTmdb.value = await result
+      console.log("detailTmdb:",detailTmdb.value);
+    }
+
+    fetchDetailTmdb(movieId.value)
+
+    fetchCrew(movieId.value)
+  } else {
+    return 'No Data!'
+  }
+});
+
+
+
+// const fetchDatas = () => {
+
+//   const options = {
+//   method: "GET",
+//   headers: {
+//     accept: "application/json",
+//     Authorization:
+//       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTg3ZTg0ODZlMDEyMzk0MmQ5ZjUyNzU2MWFiMjQ3OCIsInN1YiI6IjY1ZjZjMzFhZDhmNDRlMDE3YzUwMzM3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-zJNixL2MLgqbhe-0wAVXI3b77AJ1b9aRMmU1ptF5LQ",
+//   },
+// }
+
+//   const fetchData = async () => {
+//     try{
+//       const response = await fetch(`https://api.themoviedb.org/3/movie/${route.params.id}?language=en-US`,options);
+//       details.value = await response.json();
+//       console.log(details.value);
+//       const title = details.value.title;
+//       return title
+//     }
+//     catch(err){
+//       console.log(err.message);
+//     }
+//   }
+
+//   return {
+//     fetchData
+//   }
+
+// }
+
+// const {fetchData} = fetchDatas();
+// const {title} = fetchData();
+// console.log(title);
+
+// fetchDatas()
+
+// getDatas(route.params.id);
+// console.log(getData(route.params.id))
+
+// const datas = computed(() => {
+//     if(dataFetched.value){
+//         return dataFetched.value
+//     }
+//     return 'No Data!'
+// })
+
+// console.log(datas.value);
 
 // let val = null;
 // getDetailes().then((ret) => val = ret)
 // console.log(val);
 
-
-
-
-
-
-
-
 // console.log(details.value);
 // console.log(details.value.title);
-
-
-
-// const datas = computed(() => {
-//     if(details.value){
-//         return details.value
-//     }
-//     return 'No Data!'
-// })
-
 </script>
