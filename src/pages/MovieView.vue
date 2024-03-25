@@ -68,9 +68,9 @@
         >
           Photos
         </h2>
-        <div class="mt-[20px]">
-          <BoxImgs />
-        </div>
+        <Row class="mt-[20px] gap-[20px] justify-between" :is-row="true">
+              <ImgBox tag="li" v-for="item in sliceData" :images="item" class="list-none"/>
+        </Row>
       </Section>
     </Container>
   </div>
@@ -79,6 +79,9 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import {slice} from 'lodash';
+
+
 
 import Img from "@/components/base/Img.vue";
 import Section from "@/components/base/Section.vue";
@@ -87,8 +90,9 @@ import Row from "@/components/base/Row.vue";
 import SpecsMovie from "@/components/main/SpecsMovie.vue";
 import CardCast from "@/components/main/CardCast.vue";
 import Button from "@/components/base/Button.vue";
-import BoxImgs from "@/components/main/BoxImgs.vue";
-import Backdrop from '@/components/main/Backdrop.vue'
+import ImgBox from "@/components/main/ImgBox.vue";
+import Backdrop from '@/components/main/Backdrop.vue';
+import CardSlider from '@/components/main/CardSlider.vue';
 
 const route = useRoute();
 
@@ -139,6 +143,7 @@ const similarList = ref([]);
 const imagesList = ref([]);
 const listCrew = ref([]);
 const detailTmdb = ref(null);
+const sliceData = ref([])
 
 const options = {
   method: "GET",
@@ -153,7 +158,7 @@ const movieId = computed(() => {
   return route.params.id;
 });
 
-
+//                      fetch ----------------------
 const fetchMovies = new Promise(async (res) => {
   /*         id         */
   const response = await fetch(
@@ -195,7 +200,7 @@ const fetchMovies = new Promise(async (res) => {
       const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`, options);
       const result = await response.json();
       console.log('similar:',result.results);
-      return similarList.value = result.results;
+      return similarList.value = await result.results;
     }
 
     fetchSimilar(movieId.value);
@@ -206,12 +211,14 @@ const fetchMovies = new Promise(async (res) => {
     const fetchImages = async (id) => {
       const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/images`, options);
       const result = await response.json();
-      console.log('images:',result);
-      return imagesList.value = await result
-      
+      console.log('images:',result.backdrops);
+      imagesList.value = await result.backdrops
+       sliceData.value = await slice(imagesList.value,0,8)
+       console.log('slice data:',sliceData.value);
+      return sliceData.value.value
+    
     }
 
-    console.log(imagesList.value);
 
     fetchImages(movieId.value)
 
@@ -241,6 +248,9 @@ const fetchMovies = new Promise(async (res) => {
     return 'No Data!'
   }
 });
+
+
+
 
 
 
