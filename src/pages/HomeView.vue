@@ -31,7 +31,7 @@
       </Container>
     </Section>
 
-    <Section class="w-full mt-[40px]">
+    <Section class="w-full mt-[40px]" v-if="visibleData">
       <Container class="mx-auto">
         <Ul class="flex flex-col gap-[50px]">
             <router-link v-for="item in visibleData" :key="item.id" :to="{path:`/movie/${item.id}`}">

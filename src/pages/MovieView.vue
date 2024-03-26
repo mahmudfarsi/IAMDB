@@ -41,7 +41,7 @@
             >
               Cast & Crew
             </h2>
-            <div class="flex flex-col gap-[15px] mt-[15px]">
+            <div class="flex flex-col md:max-w-[276px] gap-[15px] mt-[15px]">
               <CardCast v-for="item in sliceCrew" :crew="item" />
             </div>
             <Button
