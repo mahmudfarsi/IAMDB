@@ -41,20 +41,17 @@
             >
               Cast & Crew
             </h2>
-            <div class="flex flex-col gap-[10px] mt-[15px]">
-              <CardCast />
-              <CardCast />
-              <CardCast />
-              <CardCast />
-              <CardCast />
+            <div class="flex flex-col gap-[15px] mt-[15px]">
+              <CardCast v-for="item in sliceCrew" :crew="item" />
             </div>
             <Button
               tag="button"
               :is-icon-only="false"
               icon="right-flesh"
               class="text-red mt-[20px] ml-[100px] md:ml-[-20px]"
+              @click="showMore"
             >
-              show all
+              {{titleMore}}
             </Button>
           </div>
         </Row>
@@ -143,7 +140,9 @@ const similarList = ref([]);
 const imagesList = ref([]);
 const listCrew = ref([]);
 const detailTmdb = ref(null);
-const sliceData = ref([])
+const sliceData = ref([]);
+const sliceCrew = ref([]);
+const toggleMore = ref(false);
 
 const options = {
   method: "GET",
@@ -227,8 +226,9 @@ const fetchMovies = new Promise(async (res) => {
     const fetchCrew = async (id) => {
       const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`, options);
       const result = await response.json();
-      console.log('crew',result.crew);
-      return listCrew.value = result.cast;
+      console.log('crew',result.cast);
+      listCrew.value = result.cast;
+      sliceCrew.value = slice(listCrew.value,0,5)
 
     }
 
@@ -249,6 +249,22 @@ const fetchMovies = new Promise(async (res) => {
   }
 });
 
+const titleMore = computed(() => {
+  if(toggleMore.value){
+    return 'show less'
+  }else if(!toggleMore.value){
+    return 'show all'
+  }
+});
+
+const showMore = () => {
+  toggleMore.value = !toggleMore.value
+  if(!toggleMore.value){
+   return  sliceCrew.value =  slice(listCrew.value,0,5)
+  }
+  
+  return sliceCrew.value =  slice(listCrew.value,0,10)
+}
 
 
 

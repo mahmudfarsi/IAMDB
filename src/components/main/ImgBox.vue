@@ -31,16 +31,12 @@
         return `https://image.tmdb.org/t/p/w500${props.images?.file_path}`
     })
 
-    
- 
-    console.log(props.images);
-
 </script>
 
 
 
 <style scoped>
     .img {
-        @apply  smm:w-[158px] md:w-[286px] rounded-curve-12
+        @apply  smm:w-[155px] md:w-[286px] rounded-curve-12
     }
 </style>
