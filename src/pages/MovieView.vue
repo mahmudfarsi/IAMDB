@@ -1,8 +1,7 @@
 <template>
   <div v-if="details" class="w-full flex flex-col items-center">
     <!--  image background  -->
-    <Backdrop :Backdrop="detailTmdb.backdrop_path "/>
-    
+    <Backdrop :Backdrop="detailTmdb.backdrop_path" />
 
     <!--  section-1  -->
     <Container class="md:px-[40px] mt-[-100px] md:mt-[-210px]">
@@ -51,7 +50,7 @@
               class="text-red mt-[20px] ml-[100px] md:ml-[-20px]"
               @click="showMore"
             >
-              {{titleMore}}
+              {{ titleMore }}
             </Button>
           </div>
         </Row>
@@ -66,19 +65,46 @@
           Photos
         </h2>
         <Row class="mt-[20px] gap-[20px] justify-between" :is-row="true">
-              <ImgBox tag="li" v-for="item in sliceData" :images="item" class="list-none"/>
+          <ImgBox
+            tag="li"
+            v-for="item in sliceData"
+            :images="item"
+            class="list-none"
+          />
         </Row>
       </Section>
     </Container>
+
+    <Section class="flex flex-col justify-center items-center mt-[50px]">
+      <Container class="w-full pl-[40px]">
+        <h2
+          class="title-similar text-white-iamdb-1 font-roboto font-bold text-xmd md:text-2xmd leading-[50px]"
+        >
+          More like this
+        </h2>
+      </Container>
+      <div class="w-screen px-[2px]">
+        <Row
+        :is-row="false"
+          class="flex flex-nowrap items-center overflow-y-visible-visible overflow-x-scroll gap-[24px] mt-[50px]"
+        >
+          <CardSlider v-for="item in similarList" :slide="item" />
+        </Row>
+      </div>
+    </Section>
+  </div>
+
+  <div v-else class="h-screen w-full flex flex-col items-center">
+    <span
+      class="loading loading-bars loading-lg text-white-iamdb-1 mt-[400px]"
+    ></span>
   </div>
 </template>
 
 <script setup>
 import { computed, ref } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import {slice} from 'lodash';
-
-
+import { useRoute } from "vue-router";
+import { slice } from "lodash";
 
 import Img from "@/components/base/Img.vue";
 import Section from "@/components/base/Section.vue";
@@ -88,51 +114,10 @@ import SpecsMovie from "@/components/main/SpecsMovie.vue";
 import CardCast from "@/components/main/CardCast.vue";
 import Button from "@/components/base/Button.vue";
 import ImgBox from "@/components/main/ImgBox.vue";
-import Backdrop from '@/components/main/Backdrop.vue';
-import CardSlider from '@/components/main/CardSlider.vue';
+import Backdrop from "@/components/main/Backdrop.vue";
+import CardSlider from "@/components/main/CardSlider.vue";
 
 const route = useRoute();
-
-// const dataFunc = (data) => {
-
-//   const overview = data.overview;
-//   const poster = data.poster_path;
-
-//   return {
-//     title,
-//     overview,
-//     poster,
-//   };
-// };
-
-// //       help ---------------------------------------------
-// const getDatas = (movie_id) => {
-//   const options = {
-//     method: "GET",
-//     headers: {
-//       accept: "application/json",
-//       Authorization:
-//         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTg3ZTg0ODZlMDEyMzk0MmQ5ZjUyNzU2MWFiMjQ3OCIsInN1YiI6IjY1ZjZjMzFhZDhmNDRlMDE3YzUwMzM3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-zJNixL2MLgqbhe-0wAVXI3b77AJ1b9aRMmU1ptF5LQ",
-//     },
-//   };
-//   const url = `https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`;
-
-//   const get = new Promise(async (res) => {
-//     const response = await fetch(url,options);
-//     details.value = await response.json();
-//     res(details.value)
-//   });
-
-//   get.then((res) => getData(res))
-//      .catch((error) => { throw new Error(error.message) } )
-// };
-
-// const getData = (data) => {
-//   details.value = data
-// }
-// getDatas(route.params.id);
-
-
 const ids = ref(null);
 const details = ref(null);
 const videos = ref(null);
@@ -167,17 +152,16 @@ const fetchMovies = new Promise(async (res) => {
   ids.value = await response.json();
   const imdb_id = ids.value.imdb_id;
   console.log(imdb_id);
-  console.log('imdb_id:',ids.value);
+  console.log("imdb_id:", ids.value);
 
   if (ids.value) {
-
     /*       details      */
     const fetchDetails = async (imdb) => {
       const response = await fetch(
         `http://www.omdbapi.com/?i=${imdb}&apikey=bc6f598a`
       );
       details.value = await response.json();
-      console.log('details:',details.value);
+      console.log("details:", details.value);
     };
     fetchDetails(imdb_id);
 
@@ -188,140 +172,85 @@ const fetchMovies = new Promise(async (res) => {
         options
       );
       const result = await response.json();
-      console.log("videos:",result.results);
-      return videos.value = result.results;
+      console.log("videos:", result.results);
+      return (videos.value = result.results);
     };
     fetchVideos(movieId.value);
 
-
     /*        similar        */
     const fetchSimilar = async (id) => {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`, options);
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`,
+        options
+      );
       const result = await response.json();
-      console.log('similar:',result.results);
-      return similarList.value = await result.results;
-    }
+      console.log("similar:", result.results);
+      return (similarList.value = await result.results);
+    };
 
     fetchSimilar(movieId.value);
 
-
-
     /*       images        */
     const fetchImages = async (id) => {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/images`, options);
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/images`,
+        options
+      );
       const result = await response.json();
-      console.log('images:',result.backdrops);
-      imagesList.value = await result.backdrops
-       sliceData.value = await slice(imagesList.value,0,8)
-       console.log('slice data:',sliceData.value);
-      return sliceData.value.value
-    
-    }
+      console.log("images:", result.backdrops);
+      imagesList.value = await result.backdrops;
+      sliceData.value = await slice(imagesList.value, 0, 8);
+      console.log("slice data:", sliceData.value);
+      return sliceData.value.value;
+    };
 
-
-    fetchImages(movieId.value)
-
+    fetchImages(movieId.value);
 
     /*          crew          */
     const fetchCrew = async (id) => {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`, options);
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
+        options
+      );
       const result = await response.json();
-      console.log('crew',result.cast);
+      console.log("crew", result.cast);
       listCrew.value = result.cast;
-      sliceCrew.value = slice(listCrew.value,0,5)
-
-    }
-
+      sliceCrew.value = slice(listCrew.value, 0, 5);
+    };
 
     /*          details-tmdb           */
     const fetchDetailTmdb = async (id) => {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?append_to_response=details&language=en-US`, options);
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}?append_to_response=details&language=en-US`,
+        options
+      );
       const result = await response.json();
-      detailTmdb.value = await result
-      console.log("detailTmdb:",detailTmdb.value);
-    }
+      detailTmdb.value = await result;
+      console.log("detailTmdb:", detailTmdb.value);
+    };
 
-    fetchDetailTmdb(movieId.value)
+    fetchDetailTmdb(movieId.value);
 
-    fetchCrew(movieId.value)
+    fetchCrew(movieId.value);
   } else {
-    return 'No Data!'
+    return "No Data!";
   }
 });
 
 const titleMore = computed(() => {
-  if(toggleMore.value){
-    return 'show less'
-  }else if(!toggleMore.value){
-    return 'show all'
+  if (toggleMore.value) {
+    return "show less";
+  } else if (!toggleMore.value) {
+    return "show all";
   }
 });
 
 const showMore = () => {
-  toggleMore.value = !toggleMore.value
-  if(!toggleMore.value){
-   return  sliceCrew.value =  slice(listCrew.value,0,5)
+  toggleMore.value = !toggleMore.value;
+  if (!toggleMore.value) {
+    return (sliceCrew.value = slice(listCrew.value, 0, 5));
   }
-  
-  return sliceCrew.value =  slice(listCrew.value,0,10)
-}
 
-
-
-
-
-// const fetchDatas = () => {
-
-//   const options = {
-//   method: "GET",
-//   headers: {
-//     accept: "application/json",
-//     Authorization:
-//       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTg3ZTg0ODZlMDEyMzk0MmQ5ZjUyNzU2MWFiMjQ3OCIsInN1YiI6IjY1ZjZjMzFhZDhmNDRlMDE3YzUwMzM3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-zJNixL2MLgqbhe-0wAVXI3b77AJ1b9aRMmU1ptF5LQ",
-//   },
-// }
-
-//   const fetchData = async () => {
-//     try{
-//       const response = await fetch(`https://api.themoviedb.org/3/movie/${route.params.id}?language=en-US`,options);
-//       details.value = await response.json();
-//       console.log(details.value);
-//       const title = details.value.title;
-//       return title
-//     }
-//     catch(err){
-//       console.log(err.message);
-//     }
-//   }
-
-//   return {
-//     fetchData
-//   }
-
-// }
-
-// const {fetchData} = fetchDatas();
-// const {title} = fetchData();
-// console.log(title);
-
-// fetchDatas()
-
-// getDatas(route.params.id);
-// console.log(getData(route.params.id))
-
-// const datas = computed(() => {
-//     if(dataFetched.value){
-//         return dataFetched.value
-//     }
-//     return 'No Data!'
-// })
-
-// console.log(datas.value);
-
-// let val = null;
-// getDetailes().then((ret) => val = ret)
-// console.log(val);
-
-// console.log(details.value);
-// console.log(details.value.title);
+  return (sliceCrew.value = slice(listCrew.value, 0, 10));
+};
 </script>
