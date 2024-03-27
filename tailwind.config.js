@@ -57,6 +57,11 @@ export default {
         'main':'rgba(27, 23, 23, 1)'
       },
 
+      //           opacity  ------------------
+      opacity:{
+        '71':'0.71'
+      },
+
       //           border-radius  ----------------
       borderRadius:{
         'circle':'50%',

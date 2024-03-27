@@ -64,7 +64,7 @@
         >
           Photos
         </h2>
-        <Row class="mt-[20px] gap-[20px] justify-between" :is-row="true">
+        <Row class="mt-[20px] gap-[20px] justify-between" tag="ul" :is-row="true">
           <ImgBox
             tag="li"
             v-for="item in sliceData"

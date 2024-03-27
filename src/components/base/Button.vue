@@ -24,7 +24,7 @@
 
 <style scoped>
     .button {
-        @apply cursor-pointer flex items-center
+        @apply cursor-pointer 
     }
 
     .button--iconOnly {
@@ -32,7 +32,7 @@
     }
 
     .button--default {
-        @apply  rounded-curve-100 smm:px-[24px] 
+        @apply flex items-center rounded-curve-100 smm:px-[24px] 
         smm:py-[12px] md:px-[32px] md:py-[18px] gap-[12px] 
         smm:justify-center 
     }
