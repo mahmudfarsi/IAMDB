@@ -3,5 +3,5 @@
 
 .wrapper {
     @apply w-full min-h-screen h-[4000px] 
-    flex justify-center bg-main 
+    flex justify-center bg-main relative
 }

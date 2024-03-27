@@ -86,11 +86,11 @@
       <div class="w-screen px-[2px]">
         <Row
         :is-row="false"
-          class="flex flex-nowrap items-center overflow-y-visible-visible overflow-x-scroll gap-[24px] mt-[50px]"
+          class="flex flex-nowrap items-center overflow-x-scroll gap-[30px] mt-[50px]"
         >
-          <Button tag="router-link" v-for="item in similarList" :title="item.title" :to="{path:`/movie/${item.id}`}">
-            <CardSlider  :slide="item" />
-          </Button>
+          <RouterLink v-for="item in similarList" :title="item.title" :to="{path:`/movie/${item.id}`}">
+            <CardSlider :slide="item" />
+          </RouterLink>
         </Row>
       </div>
     </Section>
