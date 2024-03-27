@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <div class="collapse rounded-none">
-      <input type="radio" name="my-accordion-1" checked />
+      <input type="checkbox" name="my-accordion-1" checked />
       <div class="collapse-title font-roboto text-2xsm md:text-md leading-[21px] md:leading-[24px] font-bold ml-[-16px] text-white-iamdb-1 ">
         Which characters were adapted from Marvel's Iron Man comic books?
       </div>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="collapse rounded-none">
-      <input type="radio" name="my-accordion-1" checked />
+      <input type="checkbox" name="my-accordion-1" />
       <div class="collapse-title font-roboto text-2xsm md:text-md leading-[21px] md:leading-[24px] font-bold ml-[-16px] text-white-iamdb-1 ">
         Which characters were adapted from Marvel's Iron Man comic books?
       </div>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="collapse rounded-none">
-      <input type="radio" name="my-accordion-1" checked />
+      <input type="checkbox" name="my-accordion-1" />
       <div class="collapse-title font-roboto text-2xsm md:text-md leading-[21px] md:leading-[24px] font-bold ml-[-16px] text-white-iamdb-1 ">
         Which characters were adapted from Marvel's Iron Man comic books?
       </div>

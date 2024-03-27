@@ -7,30 +7,7 @@
     <Container class="md:px-[40px] mt-[-100px] md:mt-[-210px]">
       <Section>
         <Row tag="div" is-row="true" class="gap-[45px]">
-          <div class="box-left smm:hidden md:flex md:flex-col">
-            <Img :src="details.Poster" />
-            <div
-              class="indicator-box flex items-center gap-[30px] mt-[20px] px-[15px]"
-            >
-              <div
-                class="radial-progress text-red"
-                style="--value: 80"
-                role="progressbar"
-              >
-                7.9
-              </div>
-              <div class="flex flex-col">
-                <span class="text-white-iamdb-1 font-bold text-2xsm">
-                  1,046,592
-                </span>
-                <small
-                  class="font-roboto font-normal text-xsm text-white-iamdb-1"
-                >
-                  ratings on IMDB
-                </small>
-              </div>
-            </div>
-          </div>
+          <CardImdb :details="details" class="smm:hidden md:flex" />
           <div class="box-middle pt-[55px]">
             <SpecsMovie :details="details" />
           </div>
@@ -129,7 +106,7 @@ import { computed, ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { slice } from "lodash";
 
-import Img from "@/components/base/Img.vue";
+// import Img from "@/components/base/Img.vue";
 import Section from "@/components/base/Section.vue";
 import Container from "@/components/base/Container.vue";
 import Row from "@/components/base/Row.vue";
@@ -140,6 +117,7 @@ import ImgBox from "@/components/main/ImgBox.vue";
 import Backdrop from "@/components/main/Backdrop.vue";
 import CardSlider from "@/components/main/CardSlider.vue";
 import Accordion from '@/components/main/Accordion.vue'
+import CardImdb from '@/components/main/CardImdb.vue';
 
 const route = useRoute();
 const ids = ref(null);
