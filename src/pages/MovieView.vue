@@ -56,7 +56,7 @@
         </Row>
       </Section>
     </Container>
-
+    <!--  section-2  -->
     <Container class="mt-[100px]">
       <Section class="md:pl-[45px]">
         <h2
@@ -64,7 +64,11 @@
         >
           Photos
         </h2>
-        <Row class="mt-[20px] gap-[20px] justify-between" tag="ul" :is-row="true">
+        <Row
+          class="mt-[20px] gap-[20px] justify-between"
+          tag="ul"
+          :is-row="true"
+        >
           <ImgBox
             tag="li"
             v-for="item in sliceData"
@@ -74,9 +78,9 @@
         </Row>
       </Section>
     </Container>
-
+    <!--  section-3  -->
     <Section class="flex flex-col justify-center items-center mt-[50px]">
-      <Container class="w-full pl-[40px]">
+      <Container class="w-full pl-[45px]">
         <h2
           class="title-similar text-white-iamdb-1 font-roboto font-bold text-xmd md:text-2xmd leading-[50px]"
         >
@@ -85,15 +89,32 @@
       </Container>
       <div class="w-screen px-[2px]">
         <Row
-        :is-row="false"
+          :is-row="false"
           class="flex flex-nowrap items-center overflow-x-scroll gap-[30px] mt-[50px]"
         >
-          <RouterLink v-for="item in similarList" :title="item.title" :to="{path:`/movie/${item.id}`}">
+          <RouterLink
+            v-for="item in similarList"
+            :title="item.title"
+            :to="{ path: `/movie/${item.id}` }"
+          >
             <CardSlider :slide="item" />
           </RouterLink>
         </Row>
       </div>
     </Section>
+    <!--  section-4  -->
+    <Container class="mt-[50px]">
+      <Section class="md:pl-[45px]">
+        <h2
+          class="text-white-iamdb-1 font-roboto leading-[50px] text-xmd md:text-2xmd font-bold"
+        >
+          FAQs
+        </h2>
+        <div>
+          <Accordion />
+        </div>
+      </Section>
+    </Container>
   </div>
 
   <div v-else class="h-screen w-full flex flex-col items-center">
@@ -104,7 +125,7 @@
 </template>
 
 <script setup>
-import { computed, ref,onMounted, watch } from "vue";
+import { computed, ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { slice } from "lodash";
 
@@ -118,6 +139,7 @@ import Button from "@/components/base/Button.vue";
 import ImgBox from "@/components/main/ImgBox.vue";
 import Backdrop from "@/components/main/Backdrop.vue";
 import CardSlider from "@/components/main/CardSlider.vue";
+import Accordion from '@/components/main/Accordion.vue'
 
 const route = useRoute();
 const ids = ref(null);
@@ -256,15 +278,9 @@ const showMore = () => {
   return (sliceCrew.value = slice(listCrew.value, 0, 10));
 };
 
-
-
- onMounted(async () =>{
-  watch(movieId,() => {
-    console.log('change id');
-  })
-})
-
-
-
-
+onMounted(async () => {
+  watch(movieId, () => {
+    console.log("change id");
+  });
+});
 </script>

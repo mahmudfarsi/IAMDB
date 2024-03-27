@@ -12,7 +12,7 @@
     >
       <Button
         :is-icon-only="true"
-        class="static hidden md:absolute md:top-[155px] md:z-[9999] md:right-[315px] md:flex"
+        class="static hidden md:absolute md:top-[120px] md:z-[9999] md:right-[245px] md:flex"
         icon="close"
         @click="hide"
       />
@@ -60,7 +60,6 @@ const hide = () => {
 }
 
 .larg {
-  @apply smm:w-[280px] md:w-[790px] rounded-curve-12 
-        backdrop-blur-md;
+  @apply smm:w-[280px] md:w-[943px] rounded-curve-12 
 }
 </style>
