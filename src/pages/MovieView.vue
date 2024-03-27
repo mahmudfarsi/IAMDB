@@ -88,7 +88,9 @@
         :is-row="false"
           class="flex flex-nowrap items-center overflow-y-visible-visible overflow-x-scroll gap-[24px] mt-[50px]"
         >
-          <CardSlider v-for="item in similarList" :slide="item" />
+          <Button tag="router-link" v-for="item in similarList" :title="item.title" :to="{path:`/movie/${item.id}`}">
+            <CardSlider  :slide="item" />
+          </Button>
         </Row>
       </div>
     </Section>
@@ -102,7 +104,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref,onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { slice } from "lodash";
 
@@ -253,4 +255,16 @@ const showMore = () => {
 
   return (sliceCrew.value = slice(listCrew.value, 0, 10));
 };
+
+
+
+ onMounted(async () =>{
+  watch(movieId,() => {
+    console.log('change id');
+  })
+})
+
+
+
+
 </script>

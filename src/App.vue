@@ -1,5 +1,5 @@
 <template>
   <div class="wrapper">
-    <RouterView/>
+    <RouterView :key="$route.path"/>
   </div>
 </template>
