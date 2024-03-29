@@ -4,7 +4,7 @@
     <Backdrop :Backdrop="detailTmdb.backdrop_path" />
 
     <!--  section-1  -->
-    <Container class="md:px-[40px] mt-[-100px] md:mt-[-210px]">
+    <Container class="md:px-[40px] mt-[-100px] md:mt-[-210px] relative z-[888]">
       <Section>
         <Row tag="div" is-row="true" class="gap-[45px]">
           <CardImdb :details="details" class="smm:hidden md:flex" />

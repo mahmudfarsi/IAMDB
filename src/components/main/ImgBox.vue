@@ -1,7 +1,7 @@
 <template>
   <component :is="tag" class="relative cursor-pointer" @click="showImg" >
       <Img :src="srcImg" alt="" class="img"/>
-      <div class="overlay w-full h-full bg-black bg-opacity-71 absolute top-0 flex justify-center items-center z-[999] rounded-curve-12 opacity-0 hover:opacity-100">
+      <div class="overlay w-full h-full bg-black bg-opacity-71 absolute top-0 flex justify-center  items-center z-[999] rounded-curve-12 opacity-0 hover:opacity-100">
         <Button :is-icon-only="true" icon="size" />
       </div>
   </component>

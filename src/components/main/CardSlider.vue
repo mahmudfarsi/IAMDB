@@ -15,7 +15,7 @@
                     <Icon name="star"/>
                 </span>
                 <span class="font-roboto font-normal leading-[18px] md:leading-[21px] text-white-iamdb-0.4 text-xsm md:text-2xsm">
-                    6.9
+                    {{ fixAverage }}
                 </span>
                 </div>
             </div>
@@ -58,5 +58,10 @@
 
     const srcImg = computed(() => {
         return `https://image.tmdb.org/t/p/w500/${props.slide?.poster_path}`
+    })
+
+
+    const fixAverage = computed(() => {
+        return props.slide.vote_average.toFixed(1);
     })
 </script>

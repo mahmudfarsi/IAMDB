@@ -25,7 +25,8 @@
                     Watch thrailer
                 </Button>
                 <Button :is-icon-only="true" icon="share" class="border-[2px] border-white-iamdb-1"/>
-                <Button :is-icon-only="true" icon="heart" class="border-[2px] border-white-iamdb-1"/>
+                <Button :is-icon-only="true" :icon="isFav ? 'filled-heart' : 'empty-heart'" class="border-[2px] border-white-iamdb-1" @click="toggle(details?.Title)"/>
+                <input type="checkbox"  class="hidden" :value="details?.Title"/>
             </div>
             <p class="description text-white-iamdb-0.6 font-roboto font-normal text-sm md:text-xsm leading-[16px] md:leading-[18px] mt-[35px]">
                 {{ details.Plot }}
@@ -55,10 +56,15 @@
 
 
 <script setup>
-    import { computed, defineProps } from 'vue';
+    import { computed, defineProps, ref } from 'vue';
     import { array, bool, number, object, shape, string } from 'vue-types';
 
     import Button from '@/components/base/Button.vue'
+    import {useFav} from '@/stores/favMovie.js'
+
+    const {toggle,isInFav} = useFav();
+
+  
 
 
 
@@ -143,4 +149,6 @@
         ]
     }) 
 
+    // const favList = computed(() => useFav().favList);
+    const isFav = computed(() => isInFav(props.details?.Title));
 </script>
