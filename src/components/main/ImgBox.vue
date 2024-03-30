@@ -56,7 +56,7 @@ const hide = () => {
 
 <style scoped>
 .img {
-  @apply smm:w-[155px] md:w-[286px] rounded-curve-12;
+  @apply smm:w-[140px] md:w-[286px] rounded-curve-12;
 }
 
 .larg {

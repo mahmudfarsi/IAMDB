@@ -26,7 +26,7 @@
                 </Button>
                 <Button :is-icon-only="true" :icon="isSocial ? 'close-social' : 'share' " class="border-[2px] border-white-iamdb-1 transition-colors duration-500 hover:bg-hover-opacity-0.1" @click="toggleSocial()"/>
 
-                <Social :class="['absolute top-[195px] right-[50px]', isSocial ?   'unvisib': 'showw' ]"/>
+                <Social :class="['absolute top-[178px] right-[45px] md:top-[195px] md:right-[50px]', isSocial ?   'unvisib': 'showw' ]"/>
 
 
                 <Button :is-icon-only="true" :icon="isFav ? 'filled-heart' : 'empty-heart'" class="border-[2px] border-white-iamdb-1 transition-colors duration-500 hover:bg-hover-opacity-0.1" @click="toggle(details?.Title)"/>

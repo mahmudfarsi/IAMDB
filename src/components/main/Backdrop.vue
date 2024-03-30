@@ -1,5 +1,5 @@
 <template>
-    <div class="box w-full  h-[671px]">
+    <div class="box w-full  max-h-[671px]">
         <img :src="srcImage" :alt="lolo" class="w-full h-full bg-rose-700 object-cover"/>
     </div>
 </template>
