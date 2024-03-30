@@ -1,6 +1,6 @@
 <template>
   <div class="box-left smm:hidden md:flex md:flex-col">
-    <Img :src="details.Poster" :alt="details.Title" class="rounded-curve-12"/>
+    <Img :src="details.Poster" :alt="details.Title" class="rounded-curve-12" loading="lazy"/>
     <div class="indicator-box flex items-center gap-[30px] mt-[20px] px-[15px]">
     <div
       class="radial-progress text-red"

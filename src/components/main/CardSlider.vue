@@ -2,7 +2,7 @@
     <Card class="w-[230px] md:w-[276px]">
         <template #header>
             <div class="w-[230px] md:w-[276px] h-[342px] md:h-[409px]">
-                <Img :src="srcImg" :alt="slide.title" class="w-full h-full object-cover rounded-curve-12 "/>
+                <Img :src="srcImg" :alt="slide.title" class="w-full h-full object-cover rounded-curve-12 " loading="lazy"/>
             </div>
         </template>
         <template #footer>
