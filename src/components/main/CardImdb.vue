@@ -4,7 +4,7 @@
     <div class="indicator-box flex items-center gap-[30px] mt-[20px] px-[15px]">
     <div
       class="radial-progress text-red"
-      style="--value: 80"
+      :style="[`--value:${numRate}`]"
       role="progressbar"
     >
       {{ details.imdbRating }}
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { computed, defineProps } from "vue";
 import { shape, string } from "vue-types";
 
 import Img from "@/components/base/Img.vue";
@@ -34,4 +34,10 @@ const props = defineProps({
     Title:string()
   }),
 });
+
+const numRate = computed(() => {
+  return Number(props.details?.imdbRating) * 10
+})
+
+
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="details" class=" max-w-[504px]">
+    <div v-if="details" class=" max-w-[504px] relative">
         <div class="header">
             <h1 class="title text-white-iamdb-1 font-bold text-3xmd md:text-xlg font-roboto leading-[40px] mb-[15px]">
                 {{ details.Title }}
@@ -24,8 +24,12 @@
                 <Button tag="button" :is-icon-only="false" icon="play" class="bg-red text-white-iamdb-1 md:w-[227px]">
                     Watch thrailer
                 </Button>
-                <Button :is-icon-only="true" icon="share" class="border-[2px] border-white-iamdb-1"/>
-                <Button :is-icon-only="true" :icon="isFav ? 'filled-heart' : 'empty-heart'" class="border-[2px] border-white-iamdb-1" @click="toggle(details?.Title)"/>
+                <Button :is-icon-only="true" :icon="isSocial ? 'close-social' : 'share' " class="border-[2px] border-white-iamdb-1 transition-colors duration-500 hover:bg-hover-opacity-0.1" @click="toggleSocial()"/>
+
+                <Social :class="['absolute top-[195px] right-[50px]', isSocial ?   'unvisib': 'showw' ]"/>
+
+
+                <Button :is-icon-only="true" :icon="isFav ? 'filled-heart' : 'empty-heart'" class="border-[2px] border-white-iamdb-1 transition-colors duration-500 hover:bg-hover-opacity-0.1" @click="toggle(details?.Title)"/>
                 <input type="checkbox"  class="hidden" :value="details?.Title"/>
             </div>
             <p class="description text-white-iamdb-0.6 font-roboto font-normal text-sm md:text-xsm leading-[16px] md:leading-[18px] mt-[35px]">
@@ -48,7 +52,7 @@
                         </p>
                     </li>
                 </ul>
-
+                
         </div>
     </div>
 </template>
@@ -59,7 +63,10 @@
     import { computed, defineProps, ref } from 'vue';
     import { array, bool, number, object, shape, string } from 'vue-types';
 
+
+
     import Button from '@/components/base/Button.vue'
+    import Social from '@/components/base/Social.vue'
     import {useFav} from '@/stores/favMovie.js'
 
     const {toggle,isInFav} = useFav();
@@ -151,4 +158,21 @@
 
     // const favList = computed(() => useFav().favList);
     const isFav = computed(() => isInFav(props.details?.Title));
+
+    const isSocial = ref(false);
+    const toggleSocial = () => {
+        isSocial.value = !isSocial.value
+    }
 </script>
+
+
+
+<style scoped>
+    .unvisib {
+        @apply opacity-100
+    }
+
+    .showw {
+        @apply opacity-0
+    }
+</style>

@@ -87,6 +87,7 @@
         >
           FAQs
         </h2>
+        
         <div>
           <Accordion />
         </div>
@@ -105,6 +106,7 @@
 import { computed, ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { slice } from "lodash";
+
 
 // import Img from "@/components/base/Img.vue";
 import Section from "@/components/base/Section.vue";
@@ -243,7 +245,7 @@ const titleMore = computed(() => {
   if (toggleMore.value) {
     return "show less";
   } else if (!toggleMore.value) {
-    return "show all";
+    return "show more";
   }
 });
 

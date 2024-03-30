@@ -54,7 +54,8 @@ export default {
         'white-iamdb-0.4':'rgba(238, 235, 221, 0.4)',
         'white-iamdb-0.6':'rgba(238, 235, 221, 0.6)',
         'white-iamdb-1':'rgba(238, 235, 221, 1)',
-        'main':'rgba(27, 23, 23, 1)'
+        'main':'rgba(27, 23, 23, 1)',
+        'hover-opacity-0.1':'rgba(255, 255, 255, 0.1)'
       },
 
       //           opacity  ------------------
