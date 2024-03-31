@@ -215,6 +215,38 @@
         @apply font-roboto font-normal text-xsm text-white-iamdb-1
       }
 
+
+      /*            CardSlider.vue          */
+
+      .box-img-slider {
+        @apply w-[230px] md:w-[276px] h-[342px] md:h-[409px]
+      }
+
+      .box-img-slider .img {
+        @apply w-full h-full object-cover rounded-curve-12 
+      }
+
+      .box-footer {
+        @apply flex flex-nowrap items-center justify-between 
+        mt-[12px]
+      }
+
+      .box-footer .title {
+        @apply max-w-[198px] font-roboto font-bold
+         text-white-iamdb-1 leading-[18px] md:leading-[21px] 
+         text-xsm md:text-2xsm whitespace-nowrap text-ellipsis
+          overflow-hidden
+      }
+
+      .box-flex-footer {
+        @apply flex flex-nowrap items-center gap-[6px]
+      }
+
+      .box-average {
+        @apply font-roboto font-normal leading-[18px] 
+        md:leading-[21px] text-white-iamdb-0.4 text-xsm 
+        md:text-2xsm
+      }
 }
 
 
@@ -237,5 +269,12 @@
     .card-imdb-main {
         @apply smm:hidden md:flex md:flex-col
     }
+
+
+     /*   card-slider     =>   component     */
+
+     .card-slider {
+        @apply w-[230px] md:w-[276px]
+     }
     
 }
