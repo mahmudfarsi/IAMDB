@@ -247,6 +247,24 @@
         md:leading-[21px] text-white-iamdb-0.4 text-xsm 
         md:text-2xsm
       }
+
+
+
+      /*       accordion       */
+
+      .collapse-title {
+        @apply font-roboto text-2xsm md:text-md leading-[21px] md:leading-[24px] 
+        font-bold ml-[-16px] text-white-iamdb-1 
+      }
+
+      .collapse-content{
+        @apply border-red border-l-2
+      }
+
+      .collapse-content-text {
+        @apply text-white-iamdb-0.6
+      }
+      
 }
 
 
@@ -276,5 +294,11 @@
      .card-slider {
         @apply w-[230px] md:w-[276px]
      }
+
+
+     /*   accordion     =>   component     */
+     .accordion{
+        @apply collapse rounded-none
+      }
     
 }
