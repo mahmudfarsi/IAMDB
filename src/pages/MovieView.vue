@@ -65,18 +65,21 @@
         </h2>
       </Container>
       <div class="w-screen px-[2px]">
-        <Row
-          :is-row="false"
-          class="flex flex-nowrap items-center overflow-x-scroll gap-[30px] mt-[50px]"
+        <swiper
+          :modules="modules"
+          :loop="true"
+          :slides-per-view="5.8"
+          :space-between="280"
+          :pagination="{ clickable: true }"
+          @swiper="onSwiper"
+          @slideChange="onSlideChange"
         >
-          <RouterLink
-            v-for="item in similarList"
-            :title="item.title"
-            :to="{ path: `/movie/${item.id}` }"
-          >
-            <CardSlider :slide="item" />
-          </RouterLink>
-        </Row>
+          <swiper-slide v-for="item in similarList">
+            <RouterLink :title="item.title" :to="{ path: `/movie/${item.id}` }">
+              <CardSlider :slide="item" />
+            </RouterLink>
+          </swiper-slide>
+        </swiper>
       </div>
     </Section>
     <!--  section-4  -->
@@ -87,7 +90,7 @@
         >
           FAQs
         </h2>
-        
+
         <div>
           <Accordion />
         </div>
@@ -107,7 +110,6 @@ import { computed, ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { slice } from "lodash";
 
-
 // import Img from "@/components/base/Img.vue";
 import Section from "@/components/base/Section.vue";
 import Container from "@/components/base/Container.vue";
@@ -118,8 +120,19 @@ import Button from "@/components/base/Button.vue";
 import ImgBox from "@/components/main/ImgBox.vue";
 import Backdrop from "@/components/main/Backdrop.vue";
 import CardSlider from "@/components/main/CardSlider.vue";
-import Accordion from '@/components/main/Accordion.vue'
-import CardImdb from '@/components/main/CardImdb.vue';
+import Accordion from "@/components/main/Accordion.vue";
+import CardImdb from "@/components/main/CardImdb.vue";
+
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const route = useRoute();
 const ids = ref(null);
@@ -263,4 +276,13 @@ onMounted(async () => {
     console.log("change id");
   });
 });
+
+const onSwiper = (swiper) => {
+  console.log(swiper);
+};
+const onSlideChange = () => {
+  console.log("slide change");
+};
+
+modules: [Navigation, Pagination, Scrollbar, A11y];
 </script>
