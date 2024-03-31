@@ -39,9 +39,3 @@
 </template>
 
 
-<script setup>
-    import { defineProps } from 'vue';
-    import { string } from 'vue-types';
-
-
-</script>
