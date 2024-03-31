@@ -3,10 +3,10 @@
     <Section class="w-full cover-main--desktop">
       <Container class="mx-auto">
         <div
-          class="w-full flex flex-col items-center md:items-end pt-[230px] md:pt-[270px] gap-[170px] md:gap-[180px]"
+          class="home-box"
         >
           <h1
-            class="main-tite font-roboto font-medium text-xlg md:text-2xlg text-white smm:leading-[56px] md:leading-[112.5px]"
+            class="main-title"
           >
             IAMDB
           </h1>
@@ -33,7 +33,7 @@
 
     <Section class="w-full mt-[40px]" v-if="visibleData">
       <Container class="mx-auto">
-        <Ul class="flex flex-col gap-[50px]">
+        <Ul class="list-home">
             <router-link v-for="item in visibleData" :key="item.id" :to="{path:`/movie/${item.id}`}">
               <CardItem  :movie="item"  />
             </router-link>
@@ -44,9 +44,9 @@
 </template>
 
 <script setup>
+
+
 import { ref, computed } from "vue";
-
-
 
 import Container from "@/components/base/Container.vue";
 import Button from "@/components/base/Button.vue";
@@ -56,26 +56,14 @@ import CardItem from "@/components/main/CardItem.vue";
 // import Input from "@/components/base/Input.vue";
 // import { useFetchItem } from "@/composables/getDataItems.js";
 
-
 const inputValue = ref('');
-
 // const {isLoading,fetchData,datas} = useFetchItem({inputValue})
-
-
-
-
-
 const datas = ref([]);
-
-
-
+//func for btn submit
 const send = (v) => {
-
   inputValue.value = '';
   getData(v);
 }
-
-
 const options = {
   method: "GET",
   headers: {
@@ -84,13 +72,12 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTg3ZTg0ODZlMDEyMzk0MmQ5ZjUyNzU2MWFiMjQ3OCIsInN1YiI6IjY1ZjZjMzFhZDhmNDRlMDE3YzUwMzM3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-zJNixL2MLgqbhe-0wAVXI3b77AJ1b9aRMmU1ptF5LQ",
   },
 };
+//fetch data
 const getData = async (name) => {
   const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${name}&include_adult=false&language=en-US&page=1`, options);
   datas.value = await response.json();
 };
-
-
-
+// visible data
 const visibleData = computed(() => {
   if(datas.value){
     return datas.value.results
@@ -98,31 +85,7 @@ const visibleData = computed(() => {
   return 'no data !'
 });
 
-
-
-
-
-
-
-
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <style scoped>
@@ -151,19 +114,4 @@ const visibleData = computed(() => {
   }
 }
 
-.form {
-  @apply w-full flex flex-col md:flex-row gap-[15px];
-}
-
-.input {
-  @apply rounded-curve-100 flex-1 bg-transparent outline-none border-[1px] px-[32px] py-[12px] md:py-[32px] border-white-iamdb-1  text-xsm md:text-md text-white;
-}
-
-.input::placeholder {
-  @apply text-white-iamdb-1;
-}
-
-.submit {
-  @apply bg-red text-white font-roboto font-normal smm:text-xsm md:text-md inline-flex;
-}
 </style>

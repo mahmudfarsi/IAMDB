@@ -1,30 +1,30 @@
 <template>
-  <div v-if="details" class="w-full flex flex-col items-center">
+  <div v-if="details" class="box-main-view">
     <!--  image background  -->
     <Backdrop :Backdrop="detailTmdb.backdrop_path" />
 
     <!--  section-1  -->
-    <Container class="md:px-[40px] mt-[-100px] md:mt-[-210px] relative z-[888]">
+    <Container class="container-1">
       <Section>
-        <Row tag="div" is-row="true" class="gap-[45px]">
-          <CardImdb :details="details" class="smm:hidden md:flex" />
-          <div class="box-middle pt-[55px]">
+        <Row tag="div" is-row="true" class="row-container-1">
+          <CardImdb :details="details" class="card-imdb"/>
+          <div class="box-middle">
             <SpecsMovie :details="details" />
           </div>
-          <div class="box-right md:pt-[55px]">
+          <div class="box-right ">
             <h2
-              class="font-roboto font-bold text-xmd md:text-2xmd leading-[50px] text-white-iamdb-1"
+              class="title-cast"
             >
               Cast & Crew
             </h2>
-            <div class="flex flex-col md:max-w-[276px] gap-[15px] mt-[15px]">
+            <div class="box-card-cast">
               <CardCast v-for="item in sliceCrew" :crew="item" />
             </div>
             <Button
               tag="button"
               :is-icon-only="false"
               icon="right-flesh"
-              class="text-red mt-[20px] ml-[100px] md:ml-[-20px]"
+              class="btn-more"
               @click="showMore"
             >
               {{ titleMore }}
@@ -34,15 +34,15 @@
       </Section>
     </Container>
     <!--  section-2  -->
-    <Container class="mt-[100px]">
+    <Container class="container-2">
       <Section class="md:pl-[45px]">
         <h2
-          class="title-photo text-white-iamdb-1 font-roboto font-bold text-xmd md:text-2xmd leading-[50px]"
+          class="title-photo"
         >
           Photos
         </h2>
         <Row
-          class="mt-[20px] gap-[20px] justify-between"
+          class="list-photos"
           tag="ul"
           :is-row="true"
         >
@@ -56,15 +56,15 @@
       </Section>
     </Container>
     <!--  section-3  -->
-    <Section class="flex flex-col justify-center items-center mt-[50px]">
-      <Container class="w-full pl-[45px]">
+    <Section class="sec-3">
+      <Container class="container-3">
         <h2
-          class="title-similar text-white-iamdb-1 font-roboto font-bold text-xmd md:text-2xmd leading-[50px]"
+          class="title-similar"
         >
           More like this
         </h2>
       </Container>
-      <div class="w-screen px-[2px]">
+      <div class="box-slider">
         <swiper
           :modules="modules"
           :loop="true"
@@ -83,10 +83,10 @@
       </div>
     </Section>
     <!--  section-4  -->
-    <Container class="mt-[50px]">
-      <Section class="md:pl-[45px]">
+    <Container class="container-4">
+      <Section class="sec-4">
         <h2
-          class="text-white-iamdb-1 font-roboto leading-[50px] text-xmd md:text-2xmd font-bold"
+          class="title-faqs"
         >
           FAQs
         </h2>
@@ -98,7 +98,7 @@
     </Container>
   </div>
 
-  <div v-else class="h-screen w-full flex flex-col items-center">
+  <div v-else class="box-loading">
     <span
       class="loading loading-bars loading-lg text-white-iamdb-1 mt-[400px]"
     ></span>
