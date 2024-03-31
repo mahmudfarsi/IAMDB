@@ -343,7 +343,7 @@
         text-xsm md:text-2xsm leading-[18px] md:leading-[21px]
       }
       
-      .specs-list.value{
+      .specs-list-value{
         @apply w-[153px] md:w-[323px] text-white-iamdb-0.6  
         font-roboto font-normal text-sm md:text-xsm leading-[16px] 
         md:leading-[18px]
