@@ -305,8 +305,8 @@
       }
 
       .btn-social{
-        @apply absolute top-[44px] right-[45px] md:top-[55px]
-         md:right-[50px] 
+        @apply absolute top-[55px] right-[18px] md:top-[66px]
+         md:right-[97px] 
       }
 
       .btn-trailer{
@@ -348,6 +348,40 @@
         font-roboto font-normal text-sm md:text-xsm leading-[16px] 
         md:leading-[18px]
       }
+
+
+
+
+
+
+      /*        Social.vue          */
+
+      .box-social--btn {
+        @apply max-w-[10px] h-[10px]
+      }
+
+
+
+
+
+      /*        404.vue        */
+
+      .box-404{
+        @apply w-full h-screen flex flex-col
+         items-center justify-center
+      }
+
+      .box-404-title{
+        @apply text-white-iamdb-1 text-2xlg 
+        md:text-3xlg font-roboto leading-[112px] 
+        md:leading-[150px] font-bold
+      }
+
+      .box-404-subtitle{
+        @apply text-red font-roboto font-bold 
+        leading-[46px] md:leading-[56px] text-lg 
+        md:text-xlg 
+      }
       
 }
 
@@ -383,6 +417,13 @@
      /*   accordion     =>   component     */
      .accordion{
         @apply collapse rounded-none
+      }
+
+
+      /*   social     =>   component     */
+      .box-social{
+        @apply flex  items-center justify-center
+        transition-opacity duration-500 
       }
     
 }

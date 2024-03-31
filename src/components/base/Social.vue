@@ -1,9 +1,9 @@
 <template>
-    <div class="flex  items-center justify-center transition-opacity duration-500 ">
-        <Button class=" max-w-[10px] h-[10px]" tag="router-link" icon="youtube" to="youtube.com"/>
-        <Button tag="router-link" icon="facebook" to="youtube.com"/>
-        <Button tag="router-link" icon="twitter" to="youtube.com"/>
-        <Button tag="router-link" icon="pintrest" to="youtube.com"/>
+    <div class="box-social">
+        <Button class=" box-social--btn" tag="router-link" icon="youtube" to="youtube.com"/>
+        <Button class=" box-social--btn" tag="router-link" icon="facebook" to="youtube.com"/>
+        <Button class=" box-social--btn" tag="router-link" icon="twitter" to="youtube.com"/>
+        <Button class=" box-social--btn" tag="router-link" icon="pintrest" to="youtube.com"/>
     </div>
 </template>
 
