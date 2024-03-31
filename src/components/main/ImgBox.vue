@@ -1,22 +1,22 @@
 <template>
-  <component :is="tag" class="relative cursor-pointer" @click="showImg" >
+  <component :is="tag" class="img-box" @click="showImg" >
       <Img :src="srcImg" alt="" class="img" loading="lazy"/>
-      <div class="overlay w-full h-full bg-black bg-opacity-71 absolute top-0 flex justify-center  items-center z-[999] rounded-curve-12 opacity-0 hover:opacity-100">
+      <div class="overlay">
         <Button :is-icon-only="true" icon="size" />
       </div>
   </component>
   <div
       v-show="visible"
-      class="w-screen h-screen fixed top-0 flex left-0 justify-center items-center backdrop-blur-xl z-[99999]"
+      class="img-box-large"
       @click.self="hide"
     >
       <Button
         :is-icon-only="true"
-        class="static hidden md:absolute md:top-[120px] md:z-[9999] md:right-[245px] md:flex"
+        class="btn-close"
         icon="close"
         @click="hide"
       />
-      <Img :src="srcImg" alt="" class="larg" loading="lazy"/>
+      <Img :src="srcImg" alt="" class="img-larg" loading="lazy"/>
     </div>
 </template>
 
@@ -54,12 +54,3 @@ const hide = () => {
 };
 </script>
 
-<style scoped>
-.img {
-  @apply smm:w-[140px] md:w-[286px] rounded-curve-12;
-}
-
-.larg {
-  @apply smm:w-[280px] md:w-[943px] rounded-curve-12 
-}
-</style>

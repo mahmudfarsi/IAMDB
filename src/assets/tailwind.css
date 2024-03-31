@@ -155,4 +155,45 @@
       .box-loading {
         @apply h-screen w-full flex flex-col items-center
       }
+
+
+
+
+
+      /*          ImgBox.vue         */
+
+      .overlay {
+        @apply w-full h-full bg-black bg-opacity-71 absolute
+         top-0 flex justify-center  items-center z-[999] 
+         rounded-curve-12 opacity-0 hover:opacity-100
+      }
+
+
+      .img-box-large {
+        @apply w-screen h-screen fixed top-0 flex left-0 
+        justify-center items-center backdrop-blur-xl z-[9999]
+      }
+
+      .btn-close{
+        @apply static hidden md:absolute md:top-[120px] 
+        md:z-[9999] md:right-[245px] md:flex
+      }
+
+      .img {
+        @apply smm:w-[140px] md:w-[286px] rounded-curve-12;
+      }
+      
+      .img-larg {
+        @apply smm:w-[280px] md:w-[943px] rounded-curve-12 
+      }
+
+}
+
+
+
+@layer components {
+    .img-box {
+        @apply relative cursor-pointer 
+    }
+    
 }
