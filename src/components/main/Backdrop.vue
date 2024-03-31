@@ -46,8 +46,8 @@
         z-index: 99;
         bottom: -1px;
         right: 0;
-        height: 30%;
-        background: linear-gradient(to bottom,rgba(9, 9, 9, 0),rgba(19, 19, 19, 0.8),rgb(22, 22, 22,1)) repeat  top;
+        height: 100%;
+        background: linear-gradient(to bottom,rgba(19, 19, 19, 0),rgba(21, 21, 21, 0.5),rgb(24, 24, 24,1)) repeat  top;
     }
    
 </style>

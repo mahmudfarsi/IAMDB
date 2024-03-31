@@ -1,53 +1,53 @@
 <template>
-    <div v-if="details" class=" max-w-[504px] relative">
+    <div v-if="details" class="box-specs">
         <div class="header">
-            <h1 class="title text-white-iamdb-1 font-bold text-3xmd md:text-xlg font-roboto leading-[40px] mb-[15px]">
+            <h1 class="box-specs-title">
                 {{ details.Title }}
             </h1>
-            <p class="director text-white-iamdb-1 font-roboto text-xsm leading-[18px] md:text-2xsm md:leading-[21px] font-normal mb-[20px]">
+            <p class="director ">
                 Directors: {{ details.Director }}
             </p>
-            <div class="time flex flex-nowrap items-center gap-[15px]">
-                <span class="years text-white-iamdb-1 font-roboto font-normal text-sm md:text-2xsm leading-[16px] md:leading-[21px]">
+            <div class="box-specs-time ">
+                <span class="box-specs-time-subtitle ">
                     {{ details.Year }}
                 </span>
-                <div class="dot w-[7px] h-[7px] rounded-full bg-white-iamdb-1"></div>
-                <span class="pg text-white-iamdb-1 font-roboto font-normal text-sm md:text-2xsm leading-[16px] md:leading-[21px]">
+                <div class=" box-specs-dot"></div>
+                <span class=" box-specs-time-subtitle">
                     {{ details.Rated }}
                 </span>
-                <div class="dot w-[7px] h-[7px] rounded-full bg-white-iamdb-1"></div>
-                <span class="time-film text-white-iamdb-1 font-roboto font-normal text-sm md:text-2xsm leading-[16px] md:leading-[21px]">
+                <div class="box-specs-dot "></div>
+                <span class="box-specs-time-subtitle ">
                     {{ convert }}
                 </span>
             </div>
-            <div class=" w-full  buttons flex flex-wrap smm:gap-[10px] md:gap-[20px] mt-[25px]">
-                <Button tag="button" :is-icon-only="false" icon="play" class="bg-red text-white-iamdb-1 md:w-[227px]">
+            <div class="box-btns">
+                <Button tag="button" :is-icon-only="false" icon="play" class="btn-trailer">
                     Watch thrailer
                 </Button>
-                <Button :is-icon-only="true" :icon="isSocial ? 'close-social' : 'share' " class="border-[2px] border-white-iamdb-1 transition-colors duration-500 hover:bg-hover-opacity-0.1" @click="toggleSocial()"/>
+                <Button :is-icon-only="true" :icon="isSocial ? 'close-social' : 'share' " class="btnn-specs" @click="toggleSocial()"/>
 
-                <Social :class="['absolute top-[178px] right-[45px] md:top-[195px] md:right-[50px]', isSocial ?   'unvisib': 'showw' ]"/>
+                <Social :class="['btn-social', isSocial ?   'unvisib': 'showw' ]"/>
 
 
-                <Button :is-icon-only="true" :icon="isFav ? 'filled-heart' : 'empty-heart'" class="border-[2px] border-white-iamdb-1 transition-colors duration-500 hover:bg-hover-opacity-0.1" @click="toggle(details?.Title)"/>
+                <Button :is-icon-only="true" :icon="isFav ? 'filled-heart' : 'empty-heart'" class="btnn-specs" @click="toggle(details?.Title)"/>
                 <input type="checkbox"  class="hidden" :value="details?.Title"/>
             </div>
-            <p class="description text-white-iamdb-0.6 font-roboto font-normal text-sm md:text-xsm leading-[16px] md:leading-[18px] mt-[35px]">
+            <p class="specs-description">
                 {{ details.Plot }}
             </p>
         </div>
 
         <div class="body">
-            <h2 class="details text-white-iamdb-1 font-roboto font-bold text-xmd md:text-2xmd leading-[28px] md:leading-[50px] mt-[30px]">
+            <h2 class="specs-details">
                 Details
             </h2>
                
-                <ul class="mt-[15px]">
-                    <li v-for="item in list" class=" w-full flex flex-nowrap items-center justify-between border-b-[1px] border-white-iamdb-0.6 py-[7px]">
-                        <h3 class="capitalize text-white-iamdb-1 font-roboto font-bold text-xsm md:text-2xsm leading-[18px] md:leading-[21px]">
+                <ul class="specs-list">
+                    <li v-for="item in list" class="specs-list-item">
+                        <h3 class="specs-list-label">
                             {{ item.label }}
                         </h3>
-                        <p class="w-[153px] md:w-[323px] text-white-iamdb-0.6  font-roboto font-normal text-sm md:text-xsm leading-[16px] md:leading-[18px]">
+                        <p class="specs-list-value">
                             {{ item.value }}
                         </p>
                     </li>
@@ -173,6 +173,7 @@
     }
 
     .showw {
+
         @apply opacity-0
     }
 </style>
