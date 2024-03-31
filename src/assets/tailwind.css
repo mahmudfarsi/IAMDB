@@ -10,6 +10,11 @@
 }
 
 
+
+
+
+/*          utilities         */
+
 @layer utilities {
 
 
@@ -187,13 +192,50 @@
         @apply smm:w-[280px] md:w-[943px] rounded-curve-12 
       }
 
+
+
+
+
+      /*              CardImdb.vue              */
+
+
+      .indicator-box {
+        @apply flex items-center gap-[30px] mt-[20px] px-[15px]
+      }
+
+      .imdb-votes {
+        @apply text-white-iamdb-1 font-bold text-2xsm
+      }
+
+      .imdb-rates {
+        @apply text-white-iamdb-1
+      }
+
+      .text-rating {
+        @apply font-roboto font-normal text-xsm text-white-iamdb-1
+      }
+
 }
 
 
 
+
+
+
+
+/*         component        */
+
 @layer components {
+
+    /*   img-box    =>  component  */
     .img-box {
         @apply relative cursor-pointer 
+    }
+
+    /*   card-imdb       =>   component     */
+
+    .card-imdb-main {
+        @apply smm:hidden md:flex md:flex-col
     }
     
 }
