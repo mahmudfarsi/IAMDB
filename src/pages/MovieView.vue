@@ -1,12 +1,12 @@
 <template>
   <div v-if="details" class="box-main-view">
     <!--  image background  -->
-    <Backdrop :Backdrop="detailTmdb.backdrop_path" />
+    <Backdrop :Backdrop="detailTmdb" />
 
     <!--  section-1  -->
     <Container class="container-1">
       <Section>
-        <Row tag="div" is-row="true" class="row-container-1">
+        <Row tag="div" :is-row="true" class="row-container-1">
           <CardImdb :details="details" class="card-imdb"/>
           <div class="box-middle">
             <SpecsMovie :details="details" />
@@ -50,7 +50,7 @@
             tag="li"
             v-for="item in sliceData"
             :images="item"
-            class="list-none"
+          
           />
         </Row>
       </Section>
@@ -66,7 +66,6 @@
       </Container>
       <div class="box-slider">
         <swiper
-          :modules="modules"
           :loop="true"
           :slides-per-view="5.8"
           :space-between="280"
@@ -141,9 +140,9 @@ const videos = ref(null);
 const similarList = ref([]);
 const imagesList = ref([]);
 const listCrew = ref([]);
-const detailTmdb = ref(null);
-const sliceData = ref([]);
-const sliceCrew = ref([]);
+const detailTmdb = ref({});
+const sliceData = ref({});
+const sliceCrew = ref({});
 const toggleMore = ref(false);
 
 const options = {
@@ -284,5 +283,4 @@ const onSlideChange = () => {
   console.log("slide change");
 };
 
-modules: [Navigation, Pagination, Scrollbar, A11y];
 </script>

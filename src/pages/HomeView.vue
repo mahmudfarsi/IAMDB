@@ -16,6 +16,7 @@
               type="text"
               placeholder="Type the name of your favorite movie ..."
               class="input"
+              id="inputSearch"
             />
             <Button
               tag="button"

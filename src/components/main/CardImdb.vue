@@ -1,8 +1,8 @@
 <template>
   <component :is="tag" class="card-imdb-main">
     <Img
-      :src="details.Poster"
-      :alt="details.Title"
+      :src="details?.Poster"
+      :alt="details?.Title"
       class="rounded-curve-12"
       loading="lazy"
     />
@@ -13,12 +13,12 @@
         role="progressbar"
       >
         <p class="imdb-rates">
-          {{ details.imdbRating }}
+          {{ details?.imdbRating }}
         </p>
       </div>
       <div class="flex flex-col">
         <span class="imdb-votes">
-          {{ details.imdbVotes }}
+          {{ details?.imdbVotes }}
         </span>
         <small class="text-rating">
           ratings on IMDB
@@ -30,17 +30,17 @@
 
 <script setup>
 import { computed, defineProps } from "vue";
-import { shape, string } from "vue-types";
+import { object, shape, string } from "vue-types";
 
 import Img from "@/components/base/Img.vue";
 
 const props = defineProps({
   tag:string().def('div'),
-  details: shape({
-    Poster: string(),
-    imdbRating: string(),
-    imdbVotes: string(),
-    Title: string(),
+  details: object({
+    Poster: string().isRequired,
+    imdbRating: string().isRequired,
+    imdbVotes: string().isRequired,
+    Title: string().isRequired,
   }),
 });
 

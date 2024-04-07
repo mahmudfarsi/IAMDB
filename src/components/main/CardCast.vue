@@ -19,10 +19,10 @@
 <script setup>
 
     import { computed, defineProps } from 'vue';
-    import { array, shape, string } from 'vue-types';
+    import { array, object, shape, string } from 'vue-types';
 
     const props = defineProps({
-        crew:array({
+        crew:object({
             character:string(),
             name:string(),
             profile_path:string()

@@ -1,24 +1,27 @@
 <template>
     <div class="box w-full  max-h-[671px]">
-        <img :src="srcImage" :alt="lolo" class="w-full h-full bg-rose-700 object-cover"/>
+        <img :src="srcImage" :alt="Backdrop?.original_title" class="w-full h-full bg-rose-700 object-cover"/>
     </div>
 </template>
 
 
 <script setup>
     import { computed, defineProps } from 'vue';
-    import {array, shape, string} from 'vue-types';
+    import {array, object, shape, string} from 'vue-types';
 
     // import Img from '@/components/base/Img.vue'
 
         const props = defineProps({
-            Backdrop:string()
+            Backdrop:object({
+                backdrop_path:string().isRequired,
+                original_title:string().isRequired
+            })
         })
 
         console.log(props.Backdrop);
 
         const srcImage = computed(() => {
-            return `https://image.tmdb.org/t/p/w500/${props.Backdrop}`
+            return `https://image.tmdb.org/t/p/w500/${props.Backdrop?.backdrop_path}`
         })
 
         console.log(srcImage.value);

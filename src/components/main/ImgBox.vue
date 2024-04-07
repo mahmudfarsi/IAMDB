@@ -29,7 +29,7 @@ import Button from "../base/Button.vue";
 
 const props = defineProps({
   tag: string().def("div"),
-  images: array({
+  images: object({
     aspect_ratio: number(),
     file_path: string(),
     height: number(),
